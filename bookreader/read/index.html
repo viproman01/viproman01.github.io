@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171411">
+  <meta name="description" content="Читайте EPUB в BookReader прямо в браузере.">
+  <title>BookReader — веб-читалка EPUB</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./reader.js"></script>
+</head>
+<body>
+  <main id="app">
+    <header class="app-header">
+      <a class="brand" href="../" aria-label="О BookReader">BookReader</a>
+      <div class="header-actions">
+        <button id="library-toggle" type="button" aria-pressed="true" aria-controls="library">Библиотека</button>
+        <button id="fullscreen" type="button" aria-pressed="false" disabled>На весь экран</button>
+      </div>
+    </header>
+    <div id="workspace" class="workspace">
+      <aside id="library" aria-label="Библиотека">
+        <label class="import">
+          <span>Импортировать EPUB</span>
+          <input id="import" type="file" accept=".epub,application/epub+zip">
+        </label>
+        <ul id="books" class="books" aria-label="Мои книги"></ul>
+        <details id="account" hidden>
+          <summary>Синхронизация устройств</summary>
+          <p id="account-user" hidden></p>
+          <form id="sign-in">
+            <label>Эл. почта<input id="email" type="email" autocomplete="email" required></label>
+            <label>Пароль<input id="password" type="password" autocomplete="current-password" minlength="6" required></label>
+            <div class="account-actions">
+              <button type="submit">Войти</button>
+              <button type="submit" id="sign-up">Создать аккаунт</button>
+            </div>
+          </form>
+          <button id="sign-out" type="button" hidden>Выйти</button>
+        </details>
+        <p id="library-status" class="status" role="status"></p>
+      </aside>
+      <section id="reading" aria-label="Чтение">
+        <div id="empty" class="empty">
+          <h1>Ваша полка EPUB</h1>
+          <p>Импортируйте книгу, чтобы начать читать.</p>
+        </div>
+        <div id="reader" hidden>
+          <div class="reader-tools">
+            <label class="toc">Глава<select id="toc"></select></label>
+            <button id="copy-position" type="button">Ссылка на позицию</button>
+          </div>
+          <div id="page" tabindex="0" aria-label="Текст главы">
+            <article id="text" class="paper"></article>
+          </div>
+          <div class="navigation">
+            <button id="previous" type="button">Назад</button>
+            <span id="indicator"></span>
+            <button id="next" type="button">Дальше</button>
+          </div>
+        </div>
+        <p id="reading-status" class="status" role="status"></p>
+      </section>
+    </div>
+    <dialog id="share">
+      <form method="dialog">
+        <h2>Перенести позицию</h2>
+        <p>Откройте ссылку на другом устройстве и импортируйте тот же файл EPUB.</p>
+        <label>Ссылка<input id="share-url" readonly spellcheck="false"></label>
+        <div class="account-actions">
+          <button id="copy-link" type="button">Скопировать</button>
+          <button type="submit">Готово</button>
+        </div>
+        <p id="share-status" class="status" role="status"></p>
+      </form>
+    </dialog>
+  </main>
+</body>
+</html>
