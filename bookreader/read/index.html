@@ -7,7 +7,7 @@
   <meta name="description" content="Читайте EPUB в BookReader прямо в браузере.">
   <title>BookReader — веб-читалка EPUB</title>
   <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./reader.js"></script>
+  <script type="module" src="./reader.js?v=a0055656ea55"></script>
 </head>
 <body>
   <main id="app">
@@ -22,7 +22,7 @@
       <aside id="library" aria-label="Библиотека">
         <label class="import">
           <span>Импортировать EPUB</span>
-          <input id="import" type="file" accept=".epub,application/epub+zip">
+          <input id="import" type="file" accept=".epub,application/epub+zip" disabled>
         </label>
         <ul id="books" class="books" aria-label="Мои книги"></ul>
         <details id="account" hidden>
@@ -38,7 +38,7 @@
           </form>
           <button id="sign-out" type="button" hidden>Выйти</button>
         </details>
-        <p id="library-status" class="status" role="status"></p>
+        <p id="library-status" class="status" role="status">Открываем библиотеку…</p>
       </aside>
       <section id="reading" aria-label="Чтение">
         <div id="empty" class="empty">
