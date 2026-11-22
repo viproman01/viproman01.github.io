@@ -65,11 +65,40 @@ button:disabled { opacity: .5; }
 .import:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
 .import input { position: absolute; inset: 0; inline-size: 100%; opacity: 0; cursor: pointer; }
 .import:has(input:disabled) { opacity: .65; }
-.books { list-style: none; padding: 0; }
+.shelf + .shelf { margin-top: 1.65rem; }
+.shelf h2 { margin: 0 0 .75rem; font: 400 1.38rem Georgia, serif; }
+.books { list-style: none; padding: 0; margin: 0 0 .75rem; }
 .books li + li { margin-top: .55rem; }
-.books button { width: 100%; text-align: left; overflow-wrap: anywhere; }
-.books button[aria-current="true"] { border-color: var(--accent); }
-#account { border-top: 1px solid var(--line); padding-top: .8rem; }
+.books .book-card {
+  --book-tone: #947769;
+  width: 100%;
+  display: grid;
+  grid-template-columns: .35rem minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: .75rem;
+  overflow-wrap: anywhere;
+  padding: .67rem .75rem;
+  text-align: left;
+}
+.book-card::before {
+  content: '';
+  grid-row: 1 / -1;
+  min-height: 1.6rem;
+  height: 100%;
+  border-radius: .15rem;
+  background: var(--book-tone);
+}
+.books .ochre { --book-tone: #d5a267; }
+.books .green { --book-tone: #88ad91; }
+.books .blue { --book-tone: #93a8c8; }
+.book-title { grid-column: 2; font: 400 1.08rem/1.25 Georgia, serif; }
+.book-author { grid-column: 2; margin-top: .2rem; color: var(--muted); font-size: .875rem; }
+.books .book-card[aria-current="true"] { border-color: var(--accent); background: #403023; }
+.sources { font-size: .875rem; color: var(--muted); }
+.sources ul { margin: .45rem 0 0; padding-inline-start: 1.15rem; }
+.sources a { color: var(--text); text-underline-offset: .18em; }
+#account { border-top: 1px solid var(--line); margin-top: 1.25rem; padding-top: .8rem; }
 #account form, #account label, dialog label { display: grid; gap: .4rem; }
 #account input, dialog input { min-width: 0; width: 100%; }
 .account-actions { justify-content: flex-start; flex-wrap: wrap; margin-top: .65rem; }

@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#171411">
   <meta name="description" content="Читайте EPUB в BookReader прямо в браузере.">
   <title>BookReader — веб-читалка EPUB</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./reader.js?v=a0055656ea55"></script>
+  <link rel="stylesheet" href="./style.css?v=1ee04b2b1573">
+  <script type="module" src="./reader.js?v=9c0613236d63"></script>
 </head>
 <body>
   <main id="app">
@@ -20,11 +20,23 @@
     </header>
     <div id="workspace" class="workspace">
       <aside id="library" aria-label="Библиотека">
-        <label class="import">
-          <span>Импортировать EPUB</span>
-          <input id="import" type="file" accept=".epub,application/epub+zip" disabled>
-        </label>
-        <ul id="books" class="books" aria-label="Мои книги"></ul>
+        <section class="shelf" aria-labelledby="classics-heading">
+          <h2 id="classics-heading">Классика</h2>
+          <ul id="starter-books" class="books" aria-labelledby="classics-heading"></ul>
+          <details class="sources">
+            <summary>Источники текстов</summary>
+            <ul id="book-sources"></ul>
+          </details>
+        </section>
+        <section class="shelf" aria-labelledby="personal-heading">
+          <h2 id="personal-heading">Мои книги</h2>
+          <ul id="books" class="books" aria-labelledby="personal-heading" hidden></ul>
+          <label class="import">
+            <span>Импортировать EPUB</span>
+            <input id="import" type="file" accept=".epub,application/epub+zip" disabled>
+          </label>
+        </section>
+        <p id="library-status" class="status" role="status">Открываем библиотеку…</p>
         <details id="account" hidden>
           <summary>Синхронизация устройств</summary>
           <p id="account-user" hidden></p>
@@ -38,12 +50,11 @@
           </form>
           <button id="sign-out" type="button" hidden>Выйти</button>
         </details>
-        <p id="library-status" class="status" role="status">Открываем библиотеку…</p>
       </aside>
       <section id="reading" aria-label="Чтение">
         <div id="empty" class="empty">
-          <h1>Ваша полка EPUB</h1>
-          <p>Импортируйте книгу, чтобы начать читать.</p>
+          <h1>Выберите книгу</h1>
+          <p>Начните с классики или откройте свой EPUB.</p>
         </div>
         <div id="reader" hidden>
           <div class="reader-tools">
@@ -65,7 +76,7 @@
     <dialog id="share">
       <form method="dialog">
         <h2>Перенести позицию</h2>
-        <p>Откройте ссылку на другом устройстве и импортируйте тот же файл EPUB.</p>
+        <p id="share-help"></p>
         <label>Ссылка<input id="share-url" readonly spellcheck="false"></label>
         <div class="account-actions">
           <button id="copy-link" type="button">Скопировать</button>
